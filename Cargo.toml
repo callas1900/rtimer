@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 indicatif = "0.13.0"
 structopt = "0.2.10"
+colored = "1.9"

@@ -10,6 +10,10 @@ $ rtimer 10 min
 
 # 1 hour timer
 $ rtimer 1 hour
+
+# using finish text 
+$ rtimer 1 hour -t finish!
+$ rtimer 1 -t finish!
 ```
 # Installation
 

@@ -2,6 +2,7 @@ use std::thread;
 use std::time::Duration;
 use structopt::StructOpt;
 use indicatif::{ProgressBar, ProgressStyle};
+use colored::*;
 
 #[derive(StructOpt)]
 #[structopt(about = "simple timer for command line.")]
@@ -9,7 +10,9 @@ struct Cli {
     #[structopt(help = "input time for timer.")]
     time: String,
     #[structopt(default_value = "sec", help = "select unit from `sec`, `min` or `hour`.")]
-    unit: String
+    unit: String,
+    #[structopt(long, short, default_value = "", help = "showing this text when the rtime finished with red blink effect")]
+    text: String
 }
 
 fn main() {
@@ -41,6 +44,17 @@ fn main() {
         thread::sleep(Duration::from_millis(100));
     }
     pb.finish();
+
+    let text = args.text;
+    if text.len() > 0 {
+        loop {
+            finish_with_text(&text);
+            thread::sleep(Duration::from_millis(1000));
+        }
+    }
+}
+fn finish_with_text(text: &str) {
+    println!("{}", text.white().on_red().blink());
 }
 
 fn clear_screen() {
