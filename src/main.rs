@@ -29,12 +29,13 @@ fn main() {
         "hour" => input * 36000,
         _ => input,
     };
+    
     let mut cursor = 0;
-
     let pb = ProgressBar::new(input);
 
+    clear_screen();
     pb.set_style(ProgressStyle::default_bar()
-        .template("{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {percent}%")
+        .template(format!("rtimer: {}[{}] --> {{percent}}% \n {{spinner:.green}} [{{elapsed_precise}}] [{{wide_bar:.cyan/blue}}] {{spinner:.red}} {{eta_precise}}", args.time, unit).as_str())
         .progress_chars("█░"));
 
     while pb.position() < input {
@@ -42,6 +43,10 @@ fn main() {
         pb.inc(1);
         thread::sleep(Duration::from_millis(100));
     }
-    pb.finish_with_message("finish!");
+    pb.finish();
+}
+
+fn clear_screen() {
+    std::process::Command::new("clear").spawn().expect("failed to clear terminal screen.");
 }
 
