@@ -1,4 +1,3 @@
-use std::cmp::min;
 use std::thread;
 use std::time::Duration;
 use structopt::StructOpt;
@@ -30,7 +29,6 @@ fn main() {
         _ => input,
     };
     
-    let mut cursor = 0;
     let pb = ProgressBar::new(input);
 
     clear_screen();
@@ -39,7 +37,6 @@ fn main() {
         .progress_chars("█░"));
 
     while pb.position() < input {
-        let new = min(cursor + 1, input);
         pb.inc(1);
         thread::sleep(Duration::from_millis(100));
     }
