@@ -1,3 +1,5 @@
+This is a very tiny command line timer with editable progress bar.
+
 # How to use
 
 ```bash
@@ -25,10 +27,13 @@ put a built binary file under $PATH as below.
 
 ```bash
 ~/.cargo/bin/rtimer
+/usr/local/bin/
 ```
 
 ## using cargo
 ```bash
+$ git clone https://github.com/callas1900/rtimer.git
+$ cd rtimer
 $ cargo install --path . --force
 ```
 

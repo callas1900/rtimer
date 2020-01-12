@@ -51,7 +51,7 @@ fn main() {
 
     clear_screen();
     pb.set_style(ProgressStyle::default_bar()
-        .template(format!("rtimer: {}[{}] --> {{percent}}% \n {{spinner:.green}} [{{elapsed_precise}}] [{{wide_bar:.cyan/blue}}] {{spinner:.red}} {{eta_precise}}", args.time, unit).as_str())
+        .template(format!("rtimer: {}[{}] --> {{percent}}% \n {{spinner:.green}} [{{elapsed_precise}}] [{{wide_bar:.cyan/blue}}] {{spinner:.red}} [{{eta_precise}}]", args.time, unit).as_str())
         .progress_chars(&args.progress));
 
     while pb.position() < input {
