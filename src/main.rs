@@ -12,7 +12,9 @@ struct Cli {
     #[structopt(default_value = "sec", help = "select unit from `sec`, `min` or `hour`.")]
     unit: String,
     #[structopt(long, short, default_value = "", help = "showing this text when the rtime finished with red blink effect")]
-    text: String
+    text: String,
+    #[structopt(long, short, default_value = "█░", help = "progress bar style, such as `#>-`")]
+    progress: String
 }
 
 fn main() {
@@ -37,7 +39,7 @@ fn main() {
     clear_screen();
     pb.set_style(ProgressStyle::default_bar()
         .template(format!("rtimer: {}[{}] --> {{percent}}% \n {{spinner:.green}} [{{elapsed_precise}}] [{{wide_bar:.cyan/blue}}] {{spinner:.red}} {{eta_precise}}", args.time, unit).as_str())
-        .progress_chars("█░"));
+        .progress_chars(&args.progress));
 
     while pb.position() < input {
         pb.inc(1);

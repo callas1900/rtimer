@@ -14,6 +14,10 @@ $ rtimer 1 hour
 # using finish text 
 $ rtimer 1 hour -t finish!
 $ rtimer 1 -t finish!
+
+# customize a style of the progress bar.
+$ rtimer 10 min -p "=>-"
+$ rtimer 10 min -p "01"
 ```
 # Installation
 
