@@ -1,9 +1,8 @@
+extern crate termion;
+
 use colored::*;
 use indicatif::{ProgressBar, ProgressStyle};
-use std::thread;
-use std::time::Duration;
-use structopt::StructOpt;
-
+use std::thread; use std::time::Duration; use structopt::StructOpt; use termion::{color, cursor}; 
 #[derive(StructOpt)]
 #[structopt(about = "simple timer for command line.")]
 struct Cli {
@@ -64,6 +63,18 @@ fn main() {
     if text.len() > 0 {
         loop {
             finish_with_text(&text);
+            thread::sleep(Duration::from_millis(1000));
+        }
+    } else {
+        let mut cnt = 0;
+        loop {
+            cnt += 1;
+            print!(
+                "{goto}{red}overtime => ",
+                goto = cursor::Goto(1, 4),
+                red = color::Fg(color::Red)
+            );
+            println!("{}[sec]", cnt);
             thread::sleep(Duration::from_millis(1000));
         }
     }
